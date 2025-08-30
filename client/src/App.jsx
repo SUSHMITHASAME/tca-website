@@ -6,7 +6,6 @@ import About from "./pages/About";
 import History from "./pages/History";
 import Team from "./pages/Team";
 import Contact from "./pages/Contact";
-import Events from "./pages/Events";
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard"; // Placeholder for now
 import RequireAuth from "./components/RequireAuth";
@@ -38,9 +37,6 @@ function App() {
                 </section>
                 <section id="history">
                   <History />
-                </section>
-                <section id="events">
-                  <Events />
                 </section>
                 <section id="team">
                   <Team />

@@ -22,6 +22,7 @@ app.use(express.json());
 app.use("/api/feedback", feedbackRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/teams',teamRoutes)
+app.get('/healthz', (req, res) => res.send('OK'));
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

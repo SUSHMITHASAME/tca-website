@@ -4,7 +4,7 @@ import axios from "../axios";
 const Team = () => {
   const [current, setCurrent] = useState(null);
   const [past, setPast] = useState([]);
-
+  const API_BASE = import.meta.env.VITE_API_BASE_URL;
   useEffect(() => {
     const fetchTeam = async () => {
       try {

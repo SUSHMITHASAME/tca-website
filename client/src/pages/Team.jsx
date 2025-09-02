@@ -1,18 +1,57 @@
 import React, { useEffect, useState } from "react";
 import axios from "../axios";
 
+const fallbackCurrent = {
+  year: "2024-25",
+  data: [
+    {
+      role: "Governor",
+      members: ["Manual Member 1", "Manual Member 2"],
+    },
+    {
+      role: "Joint Secretary",
+      members: ["Manual Member 3", "Manual Member 4"],
+    },
+  ],
+};
+
+const fallbackPast = [
+  {
+    year: "2023-24",
+    data: [
+      {
+        role: "Governor",
+        members: ["Past Member 1"],
+      },
+      {
+        role: "Joint Secretary",
+        members: ["Past Member 2", "Past Member 3"],
+      },
+    ],
+  },
+];
+
 const Team = () => {
   const [current, setCurrent] = useState(null);
   const [past, setPast] = useState([]);
-  const API_BASE = import.meta.env.VITE_API_BASE_URL;
+
   useEffect(() => {
     const fetchTeam = async () => {
       try {
         const res = await axios.get("/teams");
-        setCurrent(res.data.currentLeadership);
-        setPast(res.data.pastLeadership || []);
+        if (res.data && res.data.currentLeadership) {
+          setCurrent(res.data.currentLeadership);
+          setPast(res.data.pastLeadership || []);
+        } else {
+          // Fallback if API returns empty
+          setCurrent(fallbackCurrent);
+          setPast(fallbackPast);
+        }
       } catch (err) {
         console.error("Error fetching team data", err);
+        // Fallback if API fails
+        setCurrent(fallbackCurrent);
+        setPast(fallbackPast);
       }
     };
     fetchTeam();
@@ -33,8 +72,8 @@ const Team = () => {
           >
             <h3 className="text-xl font-semibold mb-3 ">{pos.role}</h3>
             <ul className="space-y-1">
-           {Array.isArray(pos.members) && pos.members.map((name, i) => <li key={i}>• {name}</li>)}
-
+              {Array.isArray(pos.members) &&
+                pos.members.map((name, i) => <li key={i}>• {name}</li>)}
             </ul>
           </div>
         ))}
@@ -66,7 +105,8 @@ const Team = () => {
                   <div key={idx}>
                     <h4 className="font-semibold mb-2">{pos.role}</h4>
                     <ul className="space-y-1">
-                      {Array.isArray(pos.members) && pos.members.map((name, i) => <li key={i}>• {name}</li>)}
+                      {Array.isArray(pos.members) &&
+                        pos.members.map((name, i) => <li key={i}>• {name}</li>)}
                     </ul>
                   </div>
                 ))}

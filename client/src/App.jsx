@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import History from "./pages/History";
 import Team from "./pages/Team";
+import Events from "./pages/Events";
 import Contact from "./pages/Contact";
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard"; // Placeholder for now
@@ -34,6 +35,9 @@ function App() {
                 </section>
                 <section id="about">
                   <About />
+                </section>
+                <section id="history">
+                  <Events />
                 </section>
                 <section id="history">
                   <History />

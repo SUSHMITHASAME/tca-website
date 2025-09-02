@@ -16,6 +16,10 @@ function App() {
       <Routes>
         {/* Admin routes (don't show navbar here) */}
         <Route path="/team" element={<Team />} />
+        <Route path="/events" element={<Events />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/history" element={<History/>} />
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin/dashboard" element={<RequireAuth>
           <AdminDashboard />
@@ -36,7 +40,7 @@ function App() {
                 <section id="about">
                   <About />
                 </section>
-                <section id="history">
+                <section id="events">
                   <Events />
                 </section>
                 <section id="history">

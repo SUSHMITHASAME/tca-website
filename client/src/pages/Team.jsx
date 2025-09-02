@@ -6,11 +6,11 @@ const fallbackCurrent = {
   data: [
     {
       role: "Governor",
-      members: ["Manual Member 1", "Manual Member 2"],
+      members: ["Sashank", "Chandana", "Sampreet", "Mani Teja"],
     },
     {
       role: "Joint Secretary",
-      members: ["Manual Member 3", "Manual Member 4"],
+      members: [" Sandeep Kowshik", "Divya","Sravani", "Chitti Babu"],
     },
   ],
 };
@@ -21,11 +21,11 @@ const fallbackPast = [
     data: [
       {
         role: "Governor",
-        members: ["Past Member 1"],
+        members: ["Abhirama Gorti","Suvvari Venkata Sai", "Akhila Chukka", " Mohan Chandu"],
       },
       {
         role: "Joint Secretary",
-        members: ["Past Member 2", "Past Member 3"],
+        members: ["Sashank", "Chandana", "Sampreet", "Mani Teja"],
       },
     ],
   },

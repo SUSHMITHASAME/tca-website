@@ -24,17 +24,17 @@ It showcases our events, cultural heritage, team, and media — built with a mod
 
 ---
 
-## Getting Started
+# Getting Started
 
 Follow these steps to run the project locally:
 
-## Prerequisites
+# Prerequisites
 
 Node.js (v14 or higher recommended)
 
 npm or yarn
 
-## Installation
+# Installation
 
 Clone the repository:
 
@@ -42,17 +42,16 @@ git clone https://github.com/SUSHMITHASAME/tca-website.git
 cd tca-website
 
 
-## Install dependencies:
+# Install dependencies:
 
 npm install
-# or
+or
 yarn install
 
 
-## Start the development server:
+# Start the development server:
 
-npm run dev
-# or
+npm run dev OR
 yarn dev
 
 
@@ -71,7 +70,7 @@ tca-website/
 ├── vite.config.js
 └── README.md
 
-## Usage
+# Usage
 
 Browse events, team members, and media content.
 
@@ -79,11 +78,11 @@ Admins can log in to update leadership, events, and other dynamic content.
 
 Use the feedback form to submit suggestions or comments.
 
-## Contributing
+# Contributing
 
 Contributions are welcome! Open an issue or submit a pull request for bug fixes, new features, or suggestions.
 
-## Acknowledgements
+# Acknowledgements
 
 Inspired by cultural association websites and open-source project templates.
 

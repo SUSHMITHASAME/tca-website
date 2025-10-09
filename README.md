@@ -57,41 +57,41 @@ tca-website/
 
 ├── client/  # React frontend
 
-│   └── .vite/deps/
+    └── .vite/deps/
 
-│   └── public/
+    └── public/
 
-│   └── src/
+    └── src/
 
-│   └── index.html
+    └── index.html
 
-│   └── package-lock.json
+    └── package-lock.json
 
-│   └── package.json
+    └── package.json
 
-│   └── vercel.json
+    └── vercel.json
 
-│   └── vite.config.js    
+    └── vite.config.js    
 
 ├── server/           # Node.js + Express backend
 
-│   └── config/
+    └── config/
 
-│   └── controllers/
+    └── controllers/
 
-│   └── middleware/
+    └── middleware/
 
-│   └── models/
+    └── models/
 
-│   └── routes/
+    └── routes/
 
-│   └── scripts/
+    └── scripts/
 
-│   └── package-lock.json
+    └── package-lock.json
 
-│   └── package.json
+    └── package.json
 
-│   └── server.js
+    └── server.js
 
 └── README.MD
  

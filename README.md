@@ -23,3 +23,70 @@ It showcases our events, cultural heritage, team, and media — built with a mod
 - Responsive UI reflecting **Telugu traditional aesthetics**
 
 ---
+
+## Getting Started
+
+Follow these steps to run the project locally:
+
+## Prerequisites
+
+Node.js (v14 or higher recommended)
+
+npm or yarn
+
+## Installation
+
+Clone the repository:
+
+git clone https://github.com/SUSHMITHASAME/tca-website.git
+cd tca-website
+
+
+## Install dependencies:
+
+npm install
+# or
+yarn install
+
+
+## Start the development server:
+
+npm run dev
+# or
+yarn dev
+
+
+## Open your browser and visit:
+
+http://localhost:5173
+
+
+(Port may vary depending on Vite configuration)
+
+## Project Structure
+tca-website/
+├── client/           # React frontend
+├── server/           # Node.js + Express backend
+├── package.json
+├── vite.config.js
+└── README.md
+
+## Usage
+
+Browse events, team members, and media content.
+
+Admins can log in to update leadership, events, and other dynamic content.
+
+Use the feedback form to submit suggestions or comments.
+
+## Contributing
+
+Contributions are welcome! Open an issue or submit a pull request for bug fixes, new features, or suggestions.
+
+## Acknowledgements
+
+Inspired by cultural association websites and open-source project templates.
+
+Special thanks to the React, Tailwind CSS, and MongoDB communities.
+
+Author: Sushmitha Same

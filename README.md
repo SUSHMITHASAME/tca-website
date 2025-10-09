@@ -24,52 +24,57 @@ It showcases our events, cultural heritage, team, and media — built with a mod
 
 ---
 
-# Getting Started
-
+## ✨ Getting Started
 Follow these steps to run the project locally:
 
-# Prerequisites
+## ✨ Prerequisites
 
 Node.js (v14 or higher recommended)
-
 npm or yarn
 
-# Installation
+## ✨ Installation
 
 Clone the repository:
-
 git clone https://github.com/SUSHMITHASAME/tca-website.git
 cd tca-website
 
-
-# Install dependencies:
-
+## ✨ Install dependencies:
 npm install
 or
 yarn install
 
-
-# Start the development server:
-
+## ✨ Start the development server:
 npm run dev OR
 yarn dev
 
-
-## Open your browser and visit:
+## ✨ Open your browser and visit:
 
 http://localhost:5173
-
-
 (Port may vary depending on Vite configuration)
 
-## Project Structure
+## ✨ Project Structure
 tca-website/
-├── client/           # React frontend
+├── client/
+│   └── .vite/deps/
+│   └── public/
+│   └── src/
+│   └── index.html
+│   └── package-lock.json
+│   └── package.json
+│   └── vercel.json
+│   └── vite.config.js          # React frontend
 ├── server/           # Node.js + Express backend
-├── package.json
-├── vite.config.js
-└── README.md
-
+│   └── config/
+│   └── controllers/
+│   └── middleware/
+│   └── models/
+│   └── routes/
+│   └── scripts/
+│   └── package-lock.json
+│   └── package.json
+│   └── server.js
+└── README.MD
+ 
 # Usage
 
 Browse events, team members, and media content.

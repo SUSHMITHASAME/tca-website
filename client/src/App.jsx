@@ -13,7 +13,7 @@ import Contact from "./pages/Contact";
 // --- Our New Auth Pages ---
 import Login from './pages/Login';
 import Register from './pages/Register';
-import AdminDashboard from './pages/Admindashboard'; // You will create this
+import AdminDashboard from './pages/AdminDashboard'; // You will create this
 import UserDashboard from './pages/UserDashboard';   // You will create this
 
 // --- Our New Protected Route Components ---

@@ -15,6 +15,10 @@ function AdminDashboard() {
   const [currentFeedbackId, setCurrentFeedbackId] = useState(null);
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
 
+  // *** 1. THIS IS THE FIX (Part 1) ***
+  // Get the API URL from your Vercel Environment Variables
+  const API_URL = import.meta.env.VITE_API_BASE_URL;
+
   // --- Handle Logout ---
   const handleLogout = () => {
     localStorage.removeItem('token');
@@ -31,18 +35,24 @@ function AdminDashboard() {
         return;
       }
       try {
-        // This line calls your backend.
-        // It requires your server on port 5000 to be running.
-        const res = await axios.get('http://localhost:5000/api/feedback', {
+        // *** 2. THIS IS THE FIX (Part 2) ***
+        // Replaced 'http://localhost:5000' with your variable
+        const res = await axios.get(`${API_URL}/api/feedback`, {
           headers: { Authorization: `Bearer ${token}` },
         });
+
         setFeedbacks(res.data);
       } catch (err) {
         // This is the error you are seeing
         console.error('Error fetching feedback:', err);
         if (err.code === 'ERR_NETWORK') {
-          setError('Network Error: Could not connect to server. Is it running?');
-        } else if (err.response && (err.response.status === 401 || err.response.status === 403)) {
+          setError(
+            'Network Error: Could not connect to the server. (Check VITE_API_BASE_URL)'
+          );
+        } else if (
+          err.response &&
+          (err.response.status === 401 || err.response.status === 403)
+        ) {
           setError('Unauthorized. Please log in again.');
           handleLogout();
         } else {
@@ -53,7 +63,7 @@ function AdminDashboard() {
       }
     };
     fetchFeedbacks();
-  }, [token, navigate]);
+  }, [token, navigate, API_URL]); // Added API_URL to dependency array
 
   // --- Modal Controls ---
   const openCreateModal = () => {
@@ -92,8 +102,9 @@ function AdminDashboard() {
     try {
       if (isEditing) {
         // --- UPDATE (PUT) ---
+        // *** 3. THIS IS THE FIX (Part 3) ***
         const res = await axios.put(
-          `http://localhost:5000/api/feedback/${currentFeedbackId}`,
+          `${API_URL}/api/feedback/${currentFeedbackId}`,
           formData,
           { headers: { Authorization: `Bearer ${token}` } }
         );
@@ -104,8 +115,9 @@ function AdminDashboard() {
         );
       } else {
         // --- CREATE (POST) ---
+        // *** 4. THIS IS THE FIX (Part 4) ***
         const res = await axios.post(
-          'http://localhost:5000/api/feedback',
+          `${API_URL}/api/feedback`,
           formData,
           { headers: { Authorization: `Bearer ${token}` } }
         );
@@ -124,7 +136,8 @@ function AdminDashboard() {
       return;
     }
     try {
-      await axios.delete(`http://localhost:5000/api/feedback/${feedbackId}`, {
+      // *** 5. THIS IS THE FIX (Part 5) ***
+      await axios.delete(`${API_URL}/api/feedback/${feedbackId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setFeedbacks(feedbacks.filter((fb) => fb._id !== feedbackId));

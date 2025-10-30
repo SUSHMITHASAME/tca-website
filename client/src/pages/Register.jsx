@@ -8,27 +8,38 @@ function Register() {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError('');
+// Add this line at the top of your component (outside the function)
+const API_URL = import.meta.env.VITE_API_BASE_URL;
 
-    if (password.length < 6) {
-      setError('Password must be at least 6 characters long.');
-      return;
-    }
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setError('');
 
-    try {
-      await axios.post('http://localhost:5000/api/auth/register', {
-        email,
-        password,
-      });
-      // After successful registration, send them to the login page
-      navigate('/login');
-    } catch (err) {
-      console.log(err);
-      setError('Failed to register. This email may already be in use.');
+  if (password.length < 6) {
+    setError('Password must be at least 6 characters long.');
+    return;
+  }
+
+  try {
+    // *** THIS IS THE FIX ***
+    // Replaced 'http://localhost:5000' with your dynamic variable
+    await axios.post(`${API_URL}/api/auth/register`, {
+      email,
+      password,
+    });
+
+    // After successful registration, send them to the login page
+    navigate('/login');
+  } catch (err) {
+    console.log(err);
+    if (err.response && err.response.data === 'Email is already in use') {
+      // Use the specific error from your server (if you send one)
+      setError('This email is already in use.');
+    } else {
+      setError('Failed to register. Please try again.');
     }
-  };
+  }
+};
 
   return (
     // Full screen background

@@ -1,64 +1,76 @@
-import React, { useEffect, useState } from "react";
-// import { fetchYouTubeStats } from ".components/utils/fetchYouTubeStats";
-import { fetchYouTubeStats } from "../components/utils/fetchYouTubeStats";
- // Make sure path is correct
+import React, { useEffect, useState } from 'react';
+import axios from 'axios'; 
 
 const History = () => {
-  // const [ytStats, setYtStats] = useState(null);
+  
+  const [ytStats, setYtStats] = useState(null);
 
-  // useEffect(() => {
-  //   fetchYouTubeStats().then((data) => {
-  //     setYtStats(data);
-  //   });
-  // }, []);
+  const API_URL = import.meta.env.VITE_API_BASE_URL;
 
+  useEffect(() => {
+    const getStats = async () => {
+      try {
+        const res = await axios.get(`${API_URL}/api/youtube/stats`);
+        setYtStats(res.data); // Save the stats
+      } catch (err) {
+        console.error('Failed to fetch YouTube stats', err);
+        // If it fails, the component will just use the hard-coded values
+      }
+    };
+
+    getStats();
+  }, [API_URL]); // Add API_URL to the dependency array
+
+  // 5. Update your stats array to use the new data
   const stats = [
-    { label: "Years of Heritage", value: "60+" },
+    { label: 'Years of Heritage', value: '60+' },
     {
-      label: "YouTube Subscribers",
-      value: "58K+",
-      //  ytStats ? `${(ytStats.subscribers / 1000).toFixed(1)}K+` :
+      label: 'YouTube Subscribers',
+      // If ytStats exists, use it. Otherwise, use the fallback.
+      value: ytStats
+        ? `${(ytStats.subscribers / 1000).toFixed(1)}K+`
+        : '58K+',
     },
     {
-      label: "Video Views",
-      value: "24M+",
-      //  ytStats ? `${(ytStats.views / 1000000).toFixed(1)}M+` :
+      label: 'Video Views',
+      value: ytStats
+        ? `${(ytStats.views / 1000000).toFixed(1)}M+`
+        : '24M+',
     },
     {
-      label: "Videos Uploaded",
-       value : "400+",
-      // value: ytStats ? `${ytStats.videos}+` : "400+",
+      label: 'Videos Uploaded',
+      value: ytStats ? `${ytStats.videos}+` : '400+',
     },
   ];
 
   const historyData = [
     {
-      year: "1960s",
-      title: "Foundation",
+      year: '1960s',
+      title: 'Foundation',
       description:
-        "TCA was founded by Telugu professors to celebrate Telugu festivals and uphold culture far from home. Funds were raised amongst professors to organize traditional events.",
+        'TCA was founded by Telugu professors to celebrate Telugu festivals and uphold culture far from home. Funds were raised amongst professors to organize traditional events.',
     },
     {
-      year: "1990s",
-      title: "Student Participation",
+      year: '1990s',
+      title: 'Student Participation',
       description:
-        "Students residing on campus began attending events and participating. The body started evolving from a faculty-only association.",
+        'Students residing on campus began attending events and participating. The body started evolving from a faculty-only association.',
     },
     {
-      year: "Early 2000s",
-      title: "Community Harmony",
+      year: 'Early 2000s',
+      title: 'Community Harmony',
       description:
-        "Harmony developed between students, faculty, and staff bodies, creating a unified cultural community.",
+        'Harmony developed between students, faculty, and staff bodies, creating a unified cultural community.',
     },
     {
-      year: "2012",
-      title: "Digital Era",
+      year: '2012',
+      title: 'Digital Era',
       description:
-        "Due to rising internet culture and social media, students became an integral part of the association.",
+        'Due to rising internet culture and social media, students became an integral part of the association.',
     },
     {
-      year: "October 2023",
-      title: "Students' TCA",
+      year: 'October 2023',
+      title: 'Students\' TCA',
       description:
         "A separate section was formed – the Students' Telugu Cultural Association, led by Governor Kumidhini Kesana.",
     },
@@ -72,11 +84,15 @@ const History = () => {
           Our Rich History
         </h2>
         <p className="text-md sm:text-lg text-orange-600 max-w-3xl mx-auto">
-          From humble beginnings in the 1960s to becoming the most prominent cultural association at IIT Kharagpur
+          From humble beginnings in the 1960s to becoming the most prominent
+          cultural association at IIT Kharagpur
         </p>
         <p className="text-[#120c0c] italic mt-2">"Second Andhra"</p>
         <p className="text-sm text-[#816868] max-w-xl mx-auto mt-1">
-          Kharagpur has been historically known by the alias "Second Andhra" because of the Telugu diaspora from then Andhra Pradesh settling at Kharagpur for Railway jobs and IITKGP being the first premiere institute of the Nation.
+          Kharagpur has been historically known by the alias "Second Andhra"
+          because of the Telugu diaspora from then Andhra Pradesh settling at
+          Kharagpur for Railway jobs and IITKGP being the first premiere
+          institute of the Nation.
         </p>
       </div>
 
@@ -103,7 +119,9 @@ const History = () => {
             key={idx}
             className="bg-white/40 backdrop-blur-md p-4 rounded-xl border border-gray-200 hover:shadow-md transform transition-transform duration-300 ease-in-out hover:scale-103"
           >
-            <p className="text-3xl p-1 font-bold text-[#641b1b]">{stat.value}</p>
+            <p className="text-3xl p-1 font-bold text-[#641b1b]">
+              {stat.value}
+            </p>
             <p className="text-sm text-[#3b1f1f]">{stat.label}</p>
           </div>
         ))}

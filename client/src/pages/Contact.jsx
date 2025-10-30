@@ -16,12 +16,13 @@ const Contact = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
-  const [status, setStatus] = useState(null); // for success or error message
+  const [status, setStatus] = useState(null);
+  const API_URL = import.meta.env.VITE_API_BASE_URL; // for success or error message
 
   const handleFeedbackSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:5000/api/feedback/submit", {
+      const res = await axios.get(`${API_URL}/api/feedback/submit`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -41,25 +42,6 @@ const Contact = () => {
       alert("Unable to connect to server.");
     }
 
-    // try {
-    //   const res = await axios.post('http://localhost:5000/api/feedback/submit', {
-    //     name,
-    //     email,
-    //     message,
-    //   });
-
-    //   if (res.data.success) {
-    //     setStatus({ type: 'success', msg: 'Feedback sent successfully!' });
-    //     setName('');
-    //     setEmail('');
-    //     setMessage('');
-    //   } else {
-    //     setStatus({ type: 'error', msg: 'Something went wrong!' });
-    //   }
-    // } catch (err) {
-    //   console.error(err);
-    //   setStatus({ type: 'error', msg: err.response?.data?.error || 'Something went wrong!' });
-    // }
   };
 
   const contactCards = [

@@ -5,23 +5,33 @@ const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
+// REGISTER A NEW USER
 router.post('/register', async (req, res) => {
+  // *** ADD THESE LINES FOR DEBUGGING ***
+  console.log("Register route was hit");
+  console.log("Data received:", req.body);
+  // *** END OF DEBUGGING LINES ***
+
   try {
-    // *** ADD THIS CHECK ***
-    const existingUser = await User.findOne({ email: req.body.email });
+    const { email, password } = req.body; // Get email and password from the body
+
+    // Check if email is empty or undefined
+    if (!email) {
+      return res.status(400).json("Email is required.");
+    }
+
+    const existingUser = await User.findOne({ email: email });
     if (existingUser) {
-      // This sends a clean error instead of crashing
       return res.status(400).json("Email is already in use");
     }
-    // *** END OF ADDED CHECK ***
 
     // Hash the password
     const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(req.body.password, salt);
+    const hashedPassword = await bcrypt.hash(password, salt);
 
-    // Create new user (your model MUST have a default role of 'user')
+    // Create new user
     const newUser = new User({
-      email: req.body.email,
+      email: email,
       password: hashedPassword,
     });
 
@@ -30,6 +40,7 @@ router.post('/register', async (req, res) => {
     res.status(201).json(user);
 
   } catch (err) {
+    console.error(err); // Log the actual error
     res.status(500).json(err);
   }
 });

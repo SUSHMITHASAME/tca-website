@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar"; // Import the Navbar
 
 // This line is the fix.
 // It reads the Vercel variable, but falls back to localhost for local testing.
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+const API_URL = import.meta.env.VITE_API_BASE_URL|| "http://localhost:5000";
 
 const fallbackCurrent = {
   year: "2024-25",

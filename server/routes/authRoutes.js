@@ -5,14 +5,21 @@ const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-// REGISTER A NEW USER
 router.post('/register', async (req, res) => {
   try {
+    // *** ADD THIS CHECK ***
+    const existingUser = await User.findOne({ email: req.body.email });
+    if (existingUser) {
+      // This sends a clean error instead of crashing
+      return res.status(400).json("Email is already in use");
+    }
+    // *** END OF ADDED CHECK ***
+
     // Hash the password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
-    // Create new user (role will be 'user' by default)
+    // Create new user (your model MUST have a default role of 'user')
     const newUser = new User({
       email: req.body.email,
       password: hashedPassword,
@@ -21,6 +28,7 @@ router.post('/register', async (req, res) => {
     // Save user
     const user = await newUser.save();
     res.status(201).json(user);
+
   } catch (err) {
     res.status(500).json(err);
   }

@@ -26,7 +26,7 @@ const Home = () => {
 
     {/* Stats */}
     <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 md:grid-cols-3 gap-6 max-w-3xl">
-      <div className="flex flex-col items-center bg-white/10 backdrop-blur-md p-2 sm:p-1 md:p-2 lg:p-4 px-10 sm:px-10 md:px-20 lg:px-30 rounded-xl border border-[#eb7b3f] shadow-md text-center">
+      <div className="flex flex-col items-center bg-white/10 backdrop-blur-md p-2 sm:p-1 md:p-2 lg:p-4 px-10 sm:px-10 md:px-20 lg:px-30 rounded-xl border border-[#f7b37b] shadow-md text-center">
         <FaBirthdayCake className="text-4xl text-white mb-1" />
         <p className="text-1xl font-bold">1960</p>
         <p className="text-sm font-medium">Founded</p>
